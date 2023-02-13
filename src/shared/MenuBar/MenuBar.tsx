@@ -1,6 +1,6 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { Transition, Dialog } from "@headlessui/react";
-import NavMobile from "shared/Navigation/NavMobile";
+import NavMobile from "../../shared/Navigation/NavMobile";
 import { useLocation } from "react-router-dom";
 
 export interface MenuBarProps {

@@ -3,7 +3,9 @@ import { ComponentType } from "react";
 
 
 export interface LocationStates {
-
+  "/"?: {};
+  "/#"?: {};
+  "/home-header"?:{};
 }
 export type PathName = keyof LocationStates;
 

@@ -9,7 +9,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
-import Avatar from "shared/Avatar/Avatar";
+import Avatar from "../../shared/Avatar/Avatar";
 
 const solutions = [
   {
