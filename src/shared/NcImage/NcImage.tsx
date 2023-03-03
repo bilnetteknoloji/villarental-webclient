@@ -66,12 +66,13 @@ const NcImage: FC<NcImageProps> = ({
     };
 
     useEffect(() => {
-        isMounted = true;
-        _initActions();
-        return () => {
-            isMounted = false;
-        };
-    }, [src]);
+            isMounted = true;
+            _initActions();
+            return () => {
+                isMounted = false;
+            };
+        },
+        [src]);
 
     const renderLoadingPlaceholder = () => {
         return (

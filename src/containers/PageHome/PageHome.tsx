@@ -4,6 +4,7 @@ import React from "react";
 import BgGlassmorphism from "../../components/BgGlassmorphism/BgGlassmorphism";
 import SectionHero from "../../components/SectionHero/SectionHero";
 import BackgroundSection from "../../components/BackgroundSection/BackgroundSection";
+import SectionGridFeaturePlaces from "./SectionGridFeaturePlaces";
 
 
 

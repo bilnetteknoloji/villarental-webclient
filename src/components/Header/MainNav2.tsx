@@ -6,7 +6,6 @@ import LangDropdown from "./LangDropdown";
 import NotifyDropdown from "./NotifyDropdown";
 import AvatarDropdown from "./AvatarDropdown";
 import CurrencyDropdown from "./CurrencyDropdown";
-import { Link } from "react-router-dom";
 import HeroSearchForm2MobileFactory from "../../components/HeroSearchForm2Mobile/HeroSearchForm2MobileFactory";
 import SocialsList from "../../shared/SocialsList/SocialsList";
 import SearchDropdown from "./SearchDropdown";
