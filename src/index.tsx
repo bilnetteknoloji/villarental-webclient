@@ -19,6 +19,7 @@ import "./index.css";
 import "./fonts/line-awesome-1.3.0/css/line-awesome.css"
 import rootReducer from "./store";
 
+
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(

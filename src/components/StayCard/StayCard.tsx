@@ -16,9 +16,6 @@ export interface StayCardProps {
     data: ProductsDTO;
     size?: "default" | "small";
 }
-
-
-
 const DATA = ProductsListing;
 
 const StayCard: FC<StayCardProps> = ({
