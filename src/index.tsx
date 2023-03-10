@@ -1,13 +1,11 @@
-import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import { applyMiddleware, createStore } from "redux";
-import thunk from "redux-thunk";
-import { BrowserRouter as Router } from "react-router-dom";
+import React from 'react';
+import ReactDOM from "react-dom/client";
+import reportWebVitals from './reportWebVitals'
+import {Provider} from "react-redux";
 
-
-import './index.css';
+import store from "./store/store";
 import App from './App';
-
+import './index.css';
 //
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
@@ -17,16 +15,17 @@ import "rc-slider/assets/index.css";
 import "./styles/index.scss";
 import "./index.css";
 import "./fonts/line-awesome-1.3.0/css/line-awesome.css"
-import rootReducer from "./store";
 
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
-
-ReactDOM.render(
-    <Provider store={store}>
-        <Router>
-            <App />
-        </Router>
-    </Provider>,
-    document.getElementById("root")
+const root = ReactDOM.createRoot(
+    document.getElementById('root') as HTMLElement
 );
+root.render(
+    <React.StrictMode>
+        <Provider store={store}>
+            <App/>
+        </Provider>
+    </React.StrictMode>
+);
+
+reportWebVitals();

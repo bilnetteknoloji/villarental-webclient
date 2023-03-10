@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import ButtonPrimary from "../../shared/Button/ButtonPrimary";
+// import ButtonPrimary from "../../shared/Button/ButtonPrimary";
 import imagePng from "../../images/hero-right.png";
 import HeroSearchForm from "../../components/HeroSearchForm/HeroSearchForm";
 
@@ -19,7 +19,8 @@ const SectionHero: FC<SectionHeroProps> = ({ className = "" }) => {
                         Mükemmel bir villa tatili deneyimi için
                     </h2>
                     <span className="text-base md:text-lg text-neutral-500 dark:text-neutral-400">
-Helal Tatil Villaları, size özel havuzlu, aile villaları, balayı villaları, deniz manzaralı villalar ve lüks villalar seçenekleri ile size unutulmaz bir villa tatili imkanı sunmaktadır.
+                        Helal Tatil Villaları, size özel havuzlu, aile villaları, balayı villaları,
+                        deniz manzaralı villalar ve lüks villalar seçenekleri ile size unutulmaz bir villa tatili imkanı sunmaktadır.
           </span>
                     {/*<ButtonPrimary>Start your search</ButtonPrimary>*/}
                 </div>

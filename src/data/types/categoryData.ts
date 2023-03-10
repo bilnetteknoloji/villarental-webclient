@@ -1,12 +1,13 @@
 import { ThunkDispatch } from "redux-thunk";
+import {ProductsDTO} from "./productsDTO";
 
 export interface CategoryState {
-    data: Category[];
+    data: CategoryData[];
     loading: boolean;
     error: string;
 }
 
-export interface Category {
+export interface CategoryData {
     kategoriId: number
     sinifId: number
     resim: string
@@ -14,6 +15,7 @@ export interface Category {
     durum: boolean
     geneltanim: string
     sira: number
+    products: ProductsDTO
 }
 
 export interface CategoryForm {
@@ -28,7 +30,7 @@ interface GET_START {
 
 interface GET_SUCCESS {
     type: "GET_CATEGORIES_SUCCESS";
-    payload: Category[];
+    payload: CategoryData[];
 }
 
 interface GET_ERROR {
@@ -41,7 +43,7 @@ interface ADD_START {
 
 interface ADD_SUCCESS {
     type: "ADD_CATEGORY_SUCCESS";
-    payload: Category;
+    payload: CategoryData;
 }
 
 interface ADD_ERROR {
@@ -54,7 +56,7 @@ interface UPDATE_START {
 
 interface UPDATE_SUCCESS {
     type: "UPDATE_CATEGORY_SUCCESS";
-    payload: Category;
+    payload: CategoryData;
 }
 
 interface UPDATE_ERROR {

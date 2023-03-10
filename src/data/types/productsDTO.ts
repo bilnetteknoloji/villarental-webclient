@@ -1,4 +1,5 @@
 import { ThunkDispatch } from "redux-thunk";
+import {CategoryData} from "./categoryData";
 
 export interface ProductsDTOState{
     data: ProductsDTO[];
@@ -22,6 +23,7 @@ export interface ProductsDTO {
     link: string;
     kampanyaId: number;
     uyefavoriId: number;
+    category: CategoryData;
 }
 
 export interface ProductsDTOFrom{
