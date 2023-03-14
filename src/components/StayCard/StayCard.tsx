@@ -1,7 +1,9 @@
 import React, {FC, useEffect,} from "react";
 import { ProductsDTO } from "../../data/types/productsDTO";
-import {useAppDispatch} from "../../store/store";
+import store, {RootState, useAppDispatch} from "../../store/store";
 import {getShowcaseProducts} from "../../store/features/ShowcaseProductsSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {getCategory} from "../../store/features/ CategorySlice";
 
 
 export interface StayCardProps {
@@ -15,10 +17,12 @@ const StayCard: FC<StayCardProps> = ({
                                          data,
                                          className = "",
                                      }) => {
-    const dispatch = useAppDispatch();
-    useEffect(()=>{
-        dispatch((getShowcaseProducts));
-    },[dispatch]);
+    const dispatch = useDispatch();
+    const {loading, error } = useSelector((state: RootState) => state.category);
+
+    useEffect(() => {
+        store.dispatch(getShowcaseProducts());
+    }, [dispatch]);
 
     const {
         urunId, urunKodu, urunAdi,

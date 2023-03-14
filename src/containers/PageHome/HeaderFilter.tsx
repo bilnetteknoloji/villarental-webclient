@@ -4,10 +4,11 @@ import Nav from "../../shared/Nav/Nav";
 import NavItem from "../../shared/NavItem/NavItem";
 import ButtonSecondary from "../../shared/Button/ButtonSecondary";
 import { ReactNode } from "react";
+import categorySlice, {getCategory} from "../../store/features/ CategorySlice";
 
 export interface HeaderFilterProps {
     tabActive: string;
-    icons: string[];
+    tabs: string[];
     heading: ReactNode;
     subHeading?: ReactNode;
     onClickTab: (item: string) => void;
@@ -15,7 +16,7 @@ export interface HeaderFilterProps {
 
 const HeaderFilter: FC<HeaderFilterProps> = ({
                                                  tabActive,
-                                                 icons,
+                                                 tabs,
                                                  subHeading = "",
                                                  heading = "🎈 Latest Articles",
                                                  onClickTab,
@@ -39,7 +40,7 @@ const HeaderFilter: FC<HeaderFilterProps> = ({
                     className="sm:space-x-2"
                     containerClassName="relative flex w-full overflow-x-auto text-sm md:text-base hiddenScrollbar"
                 >
-                    {icons.map((item, index) => (
+                    {tabs.map((item, index) => (
                         <NavItem
                             key={index}
                             isActive={tabActiveState === item}

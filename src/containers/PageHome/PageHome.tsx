@@ -1,10 +1,10 @@
-import React from "react";
+import React, {FC} from "react";
 
 //
 import BgGlassmorphism from "../../components/BgGlassmorphism/BgGlassmorphism";
 import SectionHero from "../../components/SectionHero/SectionHero";
 import BackgroundSection from "../../components/BackgroundSection/BackgroundSection";
-import SectionGridFeaturePlaces from "./SectionGridFeaturePlaces";
+import SectionGridFeaturePlaces from "../PageHome/SectionGridFeaturePlaces";
 
 
 
@@ -22,7 +22,7 @@ function PageHome() {
                 {/* SECTION */}
                 <div className="relative py-16">
                     <BackgroundSection />
-                    <SectionGridFeaturePlaces />
+                    <SectionGridFeaturePlaces/>
                 </div>
 
             </div>

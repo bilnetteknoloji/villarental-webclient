@@ -1,45 +1,58 @@
 import React, {FC, ReactNode, useEffect} from "react";
-import ButtonPrimary from "../../shared/Button/ButtonPrimary";
-import HeaderFilter from "./HeaderFilter";
-import StayCard from "../../components/StayCard/StayCard";
-import { ProductsDTO } from "../../data/types/productsDTO";
-import {useDispatch, useSelector} from "react-redux";
-import store, {RootState} from "../../store/store";
+import { useAppSelector, useAppDispatch } from "../../store/store";
+import { getShowcaseProducts } from "../../store/features/ShowcaseProductsSlice";
 import {getCategory} from "../../store/features/ CategorySlice";
+import StayCard from "../../components/StayCard/StayCard";
+import {ProductsDTO} from "../../data/types/productsDTO";
+import HeaderFilter from "./HeaderFilter";
+import ButtonPrimary from "../../shared/Button/ButtonPrimary";
 
-
-interface SectionGridFeaturePlacesProps {
+export interface SectionGridFeaturePlacesProps {
     stayListings?: ProductsDTO[];
     gridClass?: string;
     heading?: ReactNode;
     subHeading?: ReactNode;
     headingIsCenter?: boolean;
-    icons?: string[];
+    tabs?: string[];
 }
 
 const SectionGridFeaturePlaces: FC<SectionGridFeaturePlacesProps> = ({
-                                                                         stayListings = [],
                                                                          gridClass = "",
                                                                          heading = "Featured places to stay",
                                                                          subHeading = "Popular places to stay that Chisfis recommends for you",
-                                                                         icons = ["New York", "Tokyo", "Paris", "London"],
+                                                                         headingIsCenter,
+                                                                         tabs = ["New York", "Tokyo", "Paris", "London"],
+                                                                         stayListings = [],
                                                                      }) => {
-    const dispatch = useDispatch();
-    const { data, loading, error } = useSelector((state: RootState) => state.category);
+    const dispatch = useAppDispatch();
+    const category = useAppSelector((state) => state.category.category);
+    const showcaseProduct = useAppSelector((state) => state.showcaseProduct.products);
+    const status = useAppSelector((state) => state.showcaseProduct.status);
+    const error = useAppSelector((state) => state.showcaseProduct.error);
 
     useEffect(() => {
-        store.dispatch(getCategory());
+        dispatch(getCategory());
+        dispatch(getShowcaseProducts());
     }, [dispatch]);
 
+    if (status === "loading") {
+        return <div>Loading...</div>;
+    }
+
+    if (status === "failed") {
+        return <div>{error}</div>;
+    }
+
     const renderCard = (stay: ProductsDTO) => {
-        return <StayCard key={stay.urunId} data={stay} />;
+        return <StayCard key={stay.kategoriId} data={stay} />;
     };
-        return (
+
+    return (
         <div className="nc-SectionGridFeaturePlaces relative">
             <HeaderFilter
                 tabActive={"New York"}
                 subHeading={subHeading}
-                icons={icons}
+                tabs={tabs}
                 heading={heading}
                 onClickTab={() => {}}
             />
@@ -49,9 +62,11 @@ const SectionGridFeaturePlaces: FC<SectionGridFeaturePlacesProps> = ({
                 {stayListings.map((stay) => renderCard(stay))}
             </div>
             <div className="flex mt-16 justify-center items-center">
-                <ButtonPrimary loading>Daha Fazlası</ButtonPrimary>
+                <ButtonPrimary loading>Show me more</ButtonPrimary>
             </div>
         </div>
     );
 };
+
 export default SectionGridFeaturePlaces;
+

@@ -2,12 +2,27 @@ import {createSlice, createAsyncThunk, PayloadAction} from '@reduxjs/toolkit'
 import { CategoryData } from '../../data/types/categoryData'
 import axios from "axios";
 
+
+
+interface CategoryState{
+    category: CategoryData[] | null;
+    loading: boolean;
+    error: any;
+}
+
+const initialState : CategoryState = {
+    loading: false,
+    error: null,
+    category: null,
+}
+
+
 export const getCategory = createAsyncThunk(
-    "categories/getCategory",
+    "categories/get",
     async (data, thunkApi) => {
         try {
             const response = await axios.get<CategoryData[]>(
-                "http://localhost:44370/api/Categories/GetAllKategoriler"
+                "http://localhost:5214/api/Categories/GetAllKategoriler"
             );
             return response.data;
         } catch (error: any) {
@@ -17,35 +32,30 @@ export const getCategory = createAsyncThunk(
     }
 );
 
-interface CategorySlice{
-    loading: boolean;
-    error: string | null;
-    data: CategoryData[] | null;
-}
-
-const initialState = {
-    loading: false,
-    error: null,
-    data: null,
-} as CategorySlice;
-
-const CategorySlice = createSlice({
-    name: "category",
+export const CategorySlice = createSlice({
+    name: "Category",
     initialState,
-    reducers: {},
-    extraReducers(builder) {
-        builder
-            .addCase(getCategory.pending, (state, action) => {
-                state.loading = true;
-            })
-            .addCase(getCategory.fulfilled, (state, action: PayloadAction<CategoryData[]>) => {
-                state.loading = false;
-                state.data = action.payload;
-            })
-            .addCase(getCategory.rejected, (state, action: PayloadAction<any>) => {
-                state.error = action.payload;
-            });
+    reducers: {
+        setCategory: (state, action: PayloadAction<CategoryData[]>)=>{
+            state.category=action.payload
+        },
+        filterCategory: (state, action) => {
+            state.category = state.category?.filter(category => category.kategoriId !== action.payload)!;
+        }
     },
-});
+    extraReducers: (builder) => {
+        builder.addCase(getCategory.pending,(state)=>{
+            state.loading = true;
+        });
+        builder.addCase(getCategory.fulfilled, (state,action)=>{
+            state.category = action.payload;
+            state.loading = false;
+        });
+        builder.addCase(getCategory.rejected,(state, action)=>{
+            state.loading = false;
+            state.error = action.payload;
+        });
+    }
+})
 
 export default CategorySlice.reducer;
